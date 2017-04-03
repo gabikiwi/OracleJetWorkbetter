@@ -1,0 +1,24 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-flex oj-flex-items-pad">
+    <!-- ko foreach: $parent.directReports -->
+    <div class="oj-flex-item oj-lg-6 oj-sm-12 oj-xl-4" style="padding: 5px;">
+        <a tabindex="0" href="#" data-bind="click: function(data) { $parents[1].goEmp(empId) }, clickBubble: false">
+            <div class="oj-panel oj-panel-team">
+                <div class="oj-flex oj-flex-items-pad">
+                    <div class="oj-flex-item oj-sm-4" style="padding-right: 0px;">
+                        <img class="demo-circular demo-employee-photo" data-bind="attr: {src: $parents[1].getPhoto(empId), alt: firstName+' '+lastName+' photo'}"/>
+                    </div>
+                    <div class="oj-flex-item oj-sm-8" style="padding-left: 0px;">
+                        <div class="demo-employee-name" data-bind="text: firstName + ' ' + lastName"></div>
+                        <div class="demo-employee-title" data-bind="text: title"></div>
+                        <div class="demo-employee-dept" data-bind="text: deptName"></div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- /ko -->
+</div>

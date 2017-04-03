@@ -1,0 +1,154 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="justifyCenter">
+    <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-item oj-sm-12 oj-padding-bottom">
+            <div class="oj-flex oj-flex-items-pad oj-sm-align-items-flex-end">
+                <div id="pageTitleContainer" class="oj-flex-item oj-sm-2">
+                    <h1 style="margin-bottom:0">People</h1>
+                </div>
+                <div class="oj-flex-item oj-sm-8  oj-flex oj-md-justify-content-center">
+                  <div class="oj-flex-item" style="max-width: 400px; white-space: nowrap">
+                    <input aria-label="search box" placeholder="search" data-bind="value: nameSearch, valueUpdate: 'afterkeydown', ojComponent: {component: 'ojInputText', rootAttributes:{'style':'max-width:100%;'}}"/>
+                    <div id="searchIcon" class="demo-icon-sprite demo-icon-search demo-search-position"></div>
+                  </div>
+                </div>
+                <div class="oj-flex-item oj-sm-2">
+                    <div id="layoutSet" class="oj-buttonset-width-auto" aria-label="Choose layout type."  style="float: right" data-bind="ojComponent: {component: 'ojButtonset', checked: peopleLayoutType}">
+                        <label for="cardLayout"></label>
+                        <input id="cardLayout" type="radio" name="layoutGroup" value="peopleCardLayout"
+                               data-bind="click: cardLayoutHandler,  ojComponent: {
+                                   component:'ojButton',
+                                   display: $root.large() ? 'all' : 'icons',
+                                   icons: {start:'demo-grid-icon-16 demo-icon-font'},
+                                   label: 'Card'
+                                   }"/>
+                        <label for="listLayout"></label>
+                        <input id="listLayout" type="radio" name="layoutGroup" value="peopleListLayout"
+                               data-bind="click: listLayoutHandler,  ojComponent: {
+                                    component:'ojButton',
+                                    display: $root.large() ? 'all' : 'icons',
+                                    icons: {start:'demo-icon-font demo-list-icon-16'},
+                                    label: 'List'
+                                    }"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- there are two different layouts for displaying the people data. The template binding below sets whether it should load the listView template or the cardLayout template -->
+
+    <!-- ko if: ready -->
+    <div id="peoplelistview" >
+        <div class="oj-flex oj-flex-items-pad oj-sm-flex-direction-column" data-bind="template: peopleLayoutType()"></div>
+    </div>
+    <!-- /ko -->
+</div>
+
+    <!-- this is the cardLayout template. It uses the ojListView component to do the layout and the ojPagingControl component for pagination. -->
+    <script id="peopleCardLayout" type="text/html">
+        <div class="oj-flex oj-flex-items-pad">
+            <ul id="listviewcard"
+                class="oj-flex oj-listview-card-layout"
+                data-bind="ojComponent: {component: 'ojListView',
+                data: cardViewDataSource,
+                rootAttributes: {style: 'width:100%'},
+            item: {template: 'peoplecard_template'}}">
+            </ul>
+        </div>
+        <div class="oj-flex oj-flex-items-pad">
+            <div id="paging" data-bind="ojComponent: {component: 'ojPagingControl', mode: 'loadMore', data: cardViewDataSource, pageSize: $root.large()? 12:6}">
+            </div>
+        </div>
+    </script>
+
+    <!-- this is the content that is loaded by the ojListView component above. It uses standard responsive CSS design and oj-panels for the layout.  -->
+    <script id="peoplecard_template" type="text/html">
+        <li class="oj-flex-item oj-sm-12 oj-md-6 oj-lg-4 oj-xl-3" data-bind="event:{keypress:$parent.onEnter}" style="margin:0;border-style:none">
+            <div class="oj-panel oj-panel-alt1" style="margin: 5px 0px 10px 0px;" data-bind="click: $parent.loadPersonPage">
+                <div class="oj-flex oj-flex-items-pad">
+                    <div class="oj-flex-item oj-sm-4">
+                        <img alt="employee image" class="demo-circular demo-employee-photo" data-bind="attr: {src: $parent.getPhoto($data['empId'])}"/>
+                    </div>
+                    <div class="oj-flex-item oj-sm-8">
+                        <h2 class="demo-employee-name" aria-label="employee name" data-bind="text: $data['firstName'] + ' ' + $data['lastName']" tabindex="0"></h2>
+                        <div class="demo-employee-title" data-bind="text: $data['title']"></div>
+                        <div class="demo-employee-dept" data-bind="text: $data['deptName']"></div>
+                    </div>
+                </div>
+                <div class="oj-flex oj-flex-items-pad">
+                    <div class="oj-flex-item oj-sm-4">
+                        <div class="demo-employee-tenure" data-bind="text: $parent.getTenure($data)"></div>
+                        <div class="demo-employee-tenure-label">Tenure</div>
+                    </div>
+                    <div class="oj-flex-item oj-sm-4">
+                        <div class="demo-employee-perf" data-bind="text:$data['rating'], style: {color: $data['rating'] < 3 ? '#e95b54' : '#309fdb'}"></div>
+                        <div class="demo-employee-perf-label">Rating</div>
+                    </div>
+                    <div class="oj-flex-item oj-sm-4">
+                        <div class="demo-employee-perf" data-bind="text:$data['potential'], style: {color: $data['potential'] < 3 ? '#e95b54' : '#309fdb'}"></div>
+                        <div class="demo-employee-perf-label">Potential</div>
+                    </div>
+                </div>
+                <div class="oj-flex oj-flex-items-pad" style="float: right;">
+                    <a tabindex="0" data-bind="attr:{href: function(data, event){$parent.getEmail(data)}" title="email employee" class="demo-employee-email-icon"></a>
+                    <a tabindex="0" data-bind="click: function(data, event){$parent.getOrg(data, event)}, clickBubble: false"  title="show team members" class="demo-employee-org-icon"></a>
+                </div>
+            </div>
+        </li>
+    </script>
+
+    <!-- this is the listLayout template. It uses the ojListView component to do the layout and the pagination. -->
+    <script id="peopleListLayout" type="text/html">
+        <ul id="listview"
+            data-bind="ojComponent: {component: 'ojListView',
+            data: listViewDataSource,
+            item: {template: 'peoplelist_template'},
+            selectionMode: 'single',
+            currentItem: '205',
+            selection: ['205'],
+            optionChange: changeHandler,
+            rootAttributes: {style: 'width:100%;height:100vh;overflow:auto; margin-top: 5px'},
+            scrollPolicy: 'loadMoreOnScroll',
+            scrollPolicyOptions: {fetchSize: 10}}">
+        </ul>
+    </script>
+
+    <!-- this is the content that is loaded by the ojListView component above -->
+    <script id="peoplelist_template" type="text/html">
+        <li class="oj-flex-item oj-sm-12" data-bind="click: $parent.loadPersonPage">
+            <div>
+                <div class="oj-flex oj-flex-items-pad">
+                    <div class="oj-flex-item oj-lg-4 oj-md-4">
+                        <img alt="employee image" class="demo-circular demo-employee-photo" style="float:left;" data-bind="attr: {src: $parent.getPhoto($data['empId'])}"/>
+                        <h2 class="demo-employee-name" data-bind="text: $data['firstName'] + ' ' + $data['lastName']"></h2>
+                        <div class="demo-employee-title" data-bind="text: $data['title']"></div>
+                        <div class="demo-employee-dept" data-bind="text: $data['deptName']"></div>
+                    </div>
+                    <div class="oj-flex-item oj-lg-3 oj-md-3" style="min-width: 195px;">
+                        <a data-bind="attr:{href: function(data, event){$parent.getFacetime(data)}" title="Facetime employee " class="employee-facetime-24icon"></a>
+                        <a data-bind="attr:{href: function(data, event){$parent.getChat(data)}" title="IM employee" class="employee-chat-24icon"></a>
+                        <a data-bind="attr:{href: function(data, event){$parent.getEmail(data)}" title="Email employee" class="employee-email-24icon"></a>
+                    </div>
+                    <div class="oj-flex-item oj-lg-5 oj-md-4">
+                        <div class="oj-flex-item oj-sm-only-hide oj-md-4 oj-md-float-end">
+                            <div class="demo-employee-comp-ratio" data-bind="text:$data['compRatio'], style: {color: $data['compRatio'] < 86 ? '#e95b54' : '#309fdb'}"></div>
+                            <div class="demo-employee-comp-ratio-label">Comp Ratio</div>
+                        </div>
+                        <div class="oj-flex-item oj-sm-only-hide oj-md-4 oj-md-float-end">
+                            <div class="demo-employee-perf" data-bind="text:$data['potential'], style: {color: $data['potential'] < 3 ? '#e95b54' : '#309fdb'}"></div>
+                            <div class="demo-employee-perf-label">Performance</div>
+                        </div>
+                        <div class="oj-flex-item oj-sm-only-hide oj-md-4 oj-md-float-end">
+                            <div class="demo-employee-tenure" data-bind="text: $parent.getTenure($data)"></div>
+                            <div class="demo-employee-tenure-label">Tenure</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>

@@ -1,0 +1,30 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<!--
+  Template for Vertical Nav List
+  This data is hidden in off-canvas content
+  until the user clicks on the hamburger icon.
+-->
+<div id="ojAppNav2"
+     data-bind="ojComponent: {component: 'ojNavigationList',
+                drillMode: 'collapsible',
+                selection: $root.selectedItem,
+                data: $data.dataSource,
+                optionChange: $parent.optionChangeHandler,
+                item: { template: 'app_nav_template2' }
+                }"
+     >
+</div>
+<!-- template for rendering app nav data -->
+<script type="text/html" id="app_nav_template2">
+    <li data-bind="css:{'oj-disabled' : $data['disabled'] == 'true'}">
+        <a href="#">
+            <span
+                data-bind="css: $data['iconClass']">
+            </span>
+            <!-- ko text: $data['name'] --> <!--/ko-->
+        </a>
+    </li>
+</script>

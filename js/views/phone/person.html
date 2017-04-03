@@ -1,0 +1,55 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div>
+    <div id="personaldetails">
+        <div style="background-color: white">
+            <div class="oj-flex oj-flex-items-pad" style="padding-top: 20px; padding-left: 20px">
+                <div class="oj-flex-item oj-sm-3 demo-employee-photo-person-detail">
+                    <img class="demo-circular-person-detail" data-bind="attr: {src: getPhoto(personProfile().empId)}"/>
+                </div>
+                <div class="oj-flex-item oj-sm-8" style="margin-top: 10px;">
+                    <div class="demo-employee-name-person-detail demo-employee-name-person-detail-phone" data-bind="text: personProfile().firstName + ' ' + personProfile().lastName"></div>
+                    <div class="demo-employee-title-and-dept-person-detail demo-employee-title-and-dept-person-detail-phone" data-bind="text: personProfile().title"></div>
+                    <div class="demo-employee-title-and-dept-person-detail demo-employee-title-and-dept-person-detail-phone" data-bind="text: personProfile().deptName"></div>
+                </div>
+            </div>
+
+            <!-- ko if: navListDataReady -->
+            <div id="infoCategories" class="oj-flex oj-flex-items-pad">
+                <div class="oj-flex-item">
+                    <div data-bind="ojComponent:{
+                                component: 'ojNavigationList',
+                                drillMode: 'none',
+                                data: infoTilesDataSource,
+                                edge: 'top',
+                                optionChange: navListOptionChangeHandler,
+                                item: { template: 'server_template' }
+                    }" class="oj-sm-justify-content-center oj-navigationlist-stack-icon-label">
+                    </div>
+                    <script type="text/html" id="server_template">
+                        <li data-bind="attr:{ id : $data['sid']}">
+                            <a href="#">
+                                <span class="oj-navigationlist-item-icon demo-employee-navi-label-phone demo-navi-icon-phone"
+                                      data-bind="css: 'demo-navi-' + $data['title'] + '-icon'">
+                                </span>
+                                 <!--ko text: $data['title']--><!--/ko-->
+                            </a>
+                        </li>
+                    </script>
+                </div>
+            </div>
+            <!-- /ko -->
+
+        </div>
+
+
+        <div class="justifyCenter" style="padding:10px; background-color: #E7EDF2">
+            <div id="categoryDetailsArea">
+                <div data-bind="ojModule: {viewName: detailsContentTemplate()}"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

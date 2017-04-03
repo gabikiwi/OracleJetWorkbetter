@@ -1,0 +1,42 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-panel" style="margin-bottom:10px">
+    <ul id="listview"
+        data-bind="ojComponent: {component: 'ojListView', 
+            data: $parent.orgPeopleDataSource,
+            item: {template: 'peoplelist_template'}, 
+            selectionMode: 'single',
+            currentItem: '205',
+            selection: ['205'],
+            rootAttributes: {style: 'width:100%; overflow:auto; margin-top: 5px'}, 
+            scrollPolicy: 'loadMoreOnScroll', 
+            scrollPolicyOptions: {fetchSize: 10}}">
+    </ul>
+</div>
+
+<script id="peoplelist_template" type="text/html">
+    <li class="oj-flex-item oj-sm-12 peoplephone" data-bind="click: function(data) { $parents[1].goEmp(data.empId) }, clickBubble: false">
+        <div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-flex-item oj-sm-1">
+                    <img class="demo-circular demo-employee-photo" data-bind="attr: {src: $parents[1].getPhoto($data['empId'])}"/>
+                </div>
+                <div class="oj-flex-item oj-sm-7">
+                    <div class="demo-employee-name" data-bind="text: $data['firstName'] + ' ' + $data['lastName']"></div>
+                    <div class="demo-employee-title" data-bind="text: $data['title']"></div>
+                </div>
+                <div class="oj-flex-item oj-sm-1">
+                    <a data-bind="attr:{href: function(data, event){$parent.getEmail(data)}" role="img" title="Send this employee an email" class="people-phone-mobile-icon"></a>
+                </div>
+                <div class="oj-flex-item oj-sm-1">
+                    <a data-bind="attr:{href: function(data, event){$parent.getEmail(data)}" role="img" title="Send this employee an email" class="demo-employee-email-icon"></a>
+                </div>
+                <div class="oj-flex-item oj-sm-1">
+                    <a data-bind="click: function(data, event){$parent.getOrg(data, event)}, clickBubble: false" role="img" title="View this employees team members" class="demo-employee-org-icon"></a>
+                </div>
+            </div>
+        </div>
+    </li> 
+</script>

@@ -1,0 +1,48 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="">
+    <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-item oj-md-12 oj-lg-6">
+            <div class="oj-flex oj-flex-items-pad">
+
+                <div class="oj-flex-item oj-md-6">
+                    <label for="hireInfo" class="oj-label tiletitle">Hire Date</label>
+                    <div id="hireInfo" class="" data-bind="text:$parent.getHireDate()"></div>
+                </div>
+                <div class="oj-flex-item oj-md-6">
+                    <label for="addressInfo" class="oj-label tiletitle">Address</label>
+                    <div id="addressInfo" data-bind="html:$parent.formatAddress()" ></div>
+                </div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <!-- ko:if personProfile().mgrId -->
+                <div class="oj-flex-item oj-md-12" style="padding: 10px">
+                    <label for="managerInfo" class="oj-label tiletitle">Manager</label>
+                    <a id="managerPhoto" class="demo-employee-photo-person-detail oj-flex-item" href="#" tabindex="0" data-bind="click: function(data) { $parent.goEmp($parent.personProfile().mgrId) }, clickBubble: false">
+                        <img class="demo-circular-person-detail" data-bind="attr: {src: $parent.getPhoto($parent.personProfile().mgrId), alt: 'photo of '+$parent.personProfile().mgrFirstName+' '+$parent.personProfile().mgrLastName}"/>
+                    </a>
+                </div>
+                <!-- /ko -->
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div id="managerInfo" data-bind="text: $parent.personProfile().mgrFirstName + ' ' + $parent.personProfile().mgrLastName"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-flex-item oj-md-12" style="padding: 10px;">
+                    <label for="skillsInfo" class="oj-label tiletitle">Skills</label>
+                    <div id='tagcloud1' data-bind="ojComponent:{component: 'ojTagCloud',
+                                items: $parent.getSkills()}"
+                         style="max-width:500px; width:100%; height:150px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="oj-flex-item oj-md-12 oj-lg-6">
+            <label for="locationMap" class="oj-label tiletitle">Location</label>
+            <div id="locationMap" class="oj-panel oj-panel-alt2 demo-row-flex demo-align-self-stretch" style="width: 100%; min-height: 300px">Coming soon...</div>
+        </div>
+    </div>
+</div>

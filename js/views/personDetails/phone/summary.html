@@ -1,0 +1,94 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<!-- contact info panel -->
+<div class="oj-panel" style="margin-bottom:10px; padding-left: 20px">
+    <div class="oj-flex oj-flex-items-pad">
+        <label for="contactInfo" class="oj-label tiletitle">Contact Info</label>
+    </div>
+    <div id="contactInfo" class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-items" style="margin-top: 10px; margin-left: 30px;">
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-phone-icon"></div>
+                <div class="demo-employee-contact-label demo-employee-phone-label" data-bind="text: $parent.personProfile().phone"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-mobile-icon"></div>
+                <div class="demo-employee-contact-label demo-employee-mobile-label" data-bind="text: $parent.personProfile().mobile"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-func-email-icon"></div>
+                <div class="demo-employee-contact-label demo-employee-email-label">
+                    <a data-bind="attr:{href: $parent.getEmail($data)}, text: $parent.personProfile().email+'@example.net'"></a>
+                </div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-twitter-icon"></div>
+                <div class="demo-employee-contact-label" data-bind="text: $parent.personProfile().twitter" style="top: 110px;"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-facebook-icon"></div>
+                <div class="demo-employee-contact-label" data-bind="text: $parent.personProfile().facebook" style="top: 140px;"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-linkedin-icon"></div>
+                <div class="demo-employee-contact-label" data-bind="text: $parent.personProfile().linkedin" style="top: 160px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- manager and address info panel -->
+<div class="oj-panel">
+    <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-items oj-sm-6">
+            <label for="hireInfo" class="oj-label tiletitle">Hire Date</label>
+            <div id="hireInfo" data-bind="text:$parent.getHireDate()"></div>
+        </div>
+
+        <!-- ko:if $parent.personProfile().mgrId -->
+        <div class="oj-flex-items oj-sm-6">
+            <div class="oj-flex oj-flex-items-pad">
+                <label for="managerInfo" class="oj-label tiletitle">Manager</label>
+            </div>
+            <div id="managerInfo" class="oj-flex oj-flex-items-pad" data-bind="click: function(data) { $parent.goEmp($parent.personProfile().mgrId) }, clickBubble: false">
+                <div class="oj-flex-items oj-sm-2">
+                    <img alt="managers photo" class="demo-circular-person-detail" data-bind="attr: {src: $parent.getPhoto($parent.personProfile().mgrId)}" style="height:auto; width:auto; max-width:40px; max-height:40px;"/>
+                </div>
+                <div class="oj-flex-items oj-sm-10">
+                    <div id="managerInfo" class="demo-employee-contact-label" data-bind="text: $parent.personProfile().mgrFirstName + ' ' + $parent.personProfile().mgrLastName" style="top: 10px"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+
+    </div>
+    <div class="oj-flex oj-flex-items-pad" style="margin-top: 20px">
+        <div class="oj-flex-items">
+            <label for="addressInfo" class="oj-label tiletitle">Address</label>
+            <div id="addressInfo" data-bind="html:$parent.formatAddress()" ></div>
+        </div>
+    </div>
+</div>
+
+<!-- skills cloud panel -->
+<div class="oj-panel" style="margin-top:10px">
+    <div class="oj-flex oj-flex-items-pad">
+        <div class="oj-flex-items oj-md-12">
+            <label for="skillsInfo" class="oj-label tiletitle">Skills</label>
+            <div id='skillsInfo' data-bind="ojComponent:{component: 'ojTagCloud',
+                        items: $parent.getSkills()}"
+                        style="max-width:500px; width:100%; height:150px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- location panel -->
+<div class="oj-panel" style="margin-top:10px">
+    <div class="oj-flex-items oj-md-12 oj-lg-6">
+        <label for="locationMap" class="oj-label tiletitle">Location</label>
+        <div id="locationMap" class="oj-panel oj-panel-alt2 demo-row-flex demo-align-self-stretch" style="width: 100%; min-height: 300px">Coming soon...</div>
+    </div>
+</div>

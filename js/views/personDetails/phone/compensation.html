@@ -1,0 +1,42 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-panel" style="margin-bottom:10px">
+
+    <!-- TODO: PU: use different(new?) style class name, the title should be larger font -->
+    <div class="demo-employee-title-and-dept-person-detail" style="margin-bottom: 10px">History</div>
+    <div id="barChart" data-bind="ojComponent: {
+            component: 'ojChart', 
+            type: 'bar',
+            selectionMode: 'none',
+            orientation: $parent.orientationValue,
+            stack: $parent.stackValue,
+            series: $parent.barSeriesValue, 
+            groups: $parent.barGroupsValue, 
+            animationOnDisplay: 'auto',
+            animationOnDataChange: 'auto',
+            dataCursor: 'on',
+            hoverBehavior: 'dim'
+        }"
+         style="max-width:500px;width:100%;height:350px;">
+    </div>
+
+</div>
+<div class="oj-panel" style="margin-bottom:10px">
+
+    <!-- TODO: PU: use different(new?) style class name, the title should be larger font -->
+    <div class="demo-employee-title-and-dept-person-detail" style="margin-bottom: 10px">Current</div>
+    <div data-bind="ojComponent: {
+            component: 'ojChart', 
+            type: 'pie', 
+            series: $parent.pieSeriesValue,
+            animationOnDisplay: 'auto',
+            animationOnDataChange: 'auto',
+            styleDefaults: {threeDEffect: 'off'},
+            hoverBehavior: 'dim'
+        }"
+        style="max-width:500px;width:100%;height:350px;">
+    </div>
+
+</div>

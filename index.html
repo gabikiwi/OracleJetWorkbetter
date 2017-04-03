@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+
+
+<!-- ************************ IMPORTANT INFORMATION ************************************
+     This file and WorkBetter project are provided as an example of how to configure a JET application.
+     It contains the Oracle JET framework and a default requireJS configuration file to show how JET can be setup
+     in a common application. This project template can be used in conjunction with demo code from the JET website
+     to test JET component behavior and interactions.
+
+     Any CSS styling with the prefix "demo-" is for demonstration only and is not provided as part of the JET framework.
+
+     ***************************** IMPORTANT INFORMATION ************************************ -->
+
+<html lang="en-us">
+  <head>
+    <title>Work Better with Oracle JET</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=yes,width=device-width,initial-scale=1.0,maximum-scale=5.0" />
+    <link rel="icon" href="css/images/favicon.ico" type="image/x-icon" />
+
+    <!-- This is the main css file for the default Alta theme -->
+    <link id="css" rel="stylesheet" href="css/libs/oj/v3.0.0/alta/oj-alta-min.css" type="text/css"/>
+
+    <!-- These style classes are for demonstration purposes only. -->
+    <link rel="stylesheet" href="css/demo-alta-patterns-min.css" type="text/css"/>
+
+    <!-- This is where you would add any app specific styling -->
+    <link rel="stylesheet" href="css/override.css" type="text/css"/>
+
+    <!-- RequireJS bootstrap file -->
+    <script data-main="js/main" src="js/libs/require/require.js"></script>
+  </head>
+  <body>
+    <div id="globalBody" class="oj-offcanvas-outer-wrapper oj-offcanvas-page">      <!--
+      ** This off-canvas section is used when the browser is resized to a
+      ** medium or smaller media query size. It moves the App Navigation into a drawer
+      -->
+      <!-- off-canvas content -->
+      <div id="appDrawer" class="oj-contrast-marker oj-web-applayout-offcanvas oj-offcanvas-start"
+        data-bind="ojModule: {name: 'header', viewName: 'demoAppHeaderOffCanvasTemplate'}"></div>
+      <div id="pageContent" class="oj-web-applayout-page">
+        <!-- Header section which contains the Global Branding, Global Navigation,
+        ** and Application Navigation code. Template is located in /js/views/header.html
+        -->
+        <header role="banner" class="oj-web-applayout-header" data-bind="ojModule: 'header'"></header>
+        <!-- This is where your main page content will be loaded -->
+        <div class="oj-web-applayout-max-width oj-web-applayout-content">
+          <!-- If the viewport size is small, we load the templates from the
+          ** phone directory to get a specific mobile design  -->
+          <div data-bind="ojModule: dynamicConfig()"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

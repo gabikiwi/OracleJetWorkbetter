@@ -1,0 +1,22 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div>
+    <div id='chart-container'>
+        <div id="comboChart" data-bind="ojComponent: {
+                component: 'ojChart', 
+                type: 'combo', 
+                selectionMode: 'none', 
+                series: $parent.comboSeriesValue, 
+                groups: $parent.comboGroupsValue, 
+                animationOnDisplay: 'auto',
+                animationOnDataChange: 'auto',
+                orientation: $parent.orientationValue,
+                stack: $parent.stackValue,
+                hoverBehavior: 'dim',
+                yAxis: {max: 5}
+            }" style="width:100%;height:350px;">
+        </div>
+    </div>
+</div>

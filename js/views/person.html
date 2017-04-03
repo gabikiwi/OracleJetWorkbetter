@@ -1,0 +1,47 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="justifyCenter">
+    <div id="personaldetails" class="oj-flex oj-flex-items-pad" style="margin-bottom:26px;">
+        <div class="oj-flex-item oj-sm-1 oj-md-1 oj-lg-1 demo-employee-photo-person-detail">
+            <img class="demo-circular-person-detail" data-bind="attr: {src: getPhoto(personProfile().empId), alt: 'photo of '+personProfile().firstName+' '+personProfile().lastName}"/>
+        </div>
+        <div class="oj-flex-item oj-sm-4 oj-md-4 oj-lg-4"  style="margin-top: 10px;">
+            <div class="demo-employee-name-person-detail" data-bind="text: personProfile().firstName + ' ' + personProfile().lastName"></div>
+            <div class="demo-employee-title-and-dept-person-detail" data-bind="text: personProfile().title"></div>
+            <div class="demo-employee-title-and-dept-person-detail" data-bind="text: personProfile().deptName"></div>
+        </div>
+        <div class="oj-flex-item oj-sm-4 oj-md-4 oj-lg-4" style="margin-top: 10px;">
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-phone-icon"></div><div class="demo-employee-contact-label demo-employee-phone-label" data-bind="text: personProfile().phone"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-mobile-icon"></div><div class="demo-employee-contact-label demo-employee-mobile-label" data-bind="text: personProfile().mobile"></div>
+            </div>
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="demo-employee-contact-icon demo-employee-func-email-icon"></div><div class="demo-employee-contact-label demo-employee-email-label"><a data-bind="attr:{href: getEmail($data)}, text: personProfile().email+'@example.net'"></a></div>
+            </div>
+        </div>
+        <div class="oj-flex-item oj-sm-1 oj-md-1 oj-lg-2" style="margin-top: 10px;">
+            <div class="oj-flex oj-flex-items-pad"><div class="demo-employee-contact-icon demo-employee-twitter-icon"></div><div class="demo-employee-contact-label demo-employee-twitter-label" data-bind="text: personProfile().twitter"></div></div>
+            <div class="oj-flex oj-flex-items-pad"><div class="demo-employee-contact-icon demo-employee-facebook-icon"></div><div class="demo-employee-contact-label demo-employee-facebook-label" data-bind="text: personProfile().facebook"></div></div>
+            <div class="oj-flex oj-flex-items-pad"><div class="demo-employee-contact-icon demo-employee-linkedin-icon"></div><div class="demo-employee-contact-label demo-employee-linkedin-label" data-bind="text: personProfile().linkedin"></div></div>
+        </div>
+    </div>
+
+    <div class="oj-flex oj-flex-items-pad">
+        <div id="infoCategories" class="oj-flex oj-flex-item oj-sm-3 oj-lg-12">
+            <!-- ko foreach: infoTiles -->
+            <div class="oj-flex-item oj-sm-12 oj-lg-3" data-bind="ojModule: { viewName: $root.large() ? 'landscapeInfoTile' : 'portraitInfoTile'}"></div>
+            <!-- /ko -->
+        </div>
+        <div id="categoryDetailsArea" class="oj-flex-item oj-sm-9 oj-lg-12">
+            <div class="oj-flex-item oj-sm-12">
+                <div class="oj-panel" data-bind="style:{minHeight: $root.large() ? '300px' : '816px'}" style="margin-top: 10px;">
+                    <div data-bind="ojModule:{ viewName: detailsContentTemplate()}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
