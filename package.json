@@ -20,7 +20,7 @@
     "requirejs-text": "2.0.15",
     "webcomponents.js": "0.7.24",
     "proj4": "2.3.14",
-    "require-css": "0.1.8"
+    "require-css": "0.1.8",
 	"body-parser": "^1.15.1",
     "express": "^4.13.4"
   },
